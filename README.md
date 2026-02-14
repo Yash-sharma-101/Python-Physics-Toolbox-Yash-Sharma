@@ -1,14 +1,12 @@
 # Python-Physics-Toolbox-Yash-Sharma
 **First Code**
 TASK 1 : **Plasma Temperature Classifier**
-Purpose: To classify the Plasma temperatue in three cataguries i.e Cold, Warm and Hot.
-on the basis of given conditions 
-> This code will ask to user for 5 temperatures (code will check invailed data)
-> Classify it using conditional statements and loops
-> Conditional statements will check the given Conditions
-> Store it in the list of tuples
->   
-> Printing
+Purpose of this task is to classify the temperature of Plasma into three catagories Cold, Warm and Hot.
+> This code will ask user for 5 plasma temperature data. 
+> Code will classify data using conditional statements and loops.
+> Conditional statements will check the given Conditions.
+> Code will store data in the list of tuples.
+> Will print result according to condition.
 
 **Second Code**
 TASK 3: **Simple Particle Energy Calculator**
