@@ -1,0 +1,46 @@
+# Importing re module.
+
+import re
+
+# Given data set.
+
+raw_data = [
+    "lambda = 532 nm intensity 1.2 mW date 2025-04-10",
+    "Wavelength: 650nm, Power = 5W",
+    "Laser lambda 405 nm output power 0.75 mW"
+]
+
+# Cleaning the data set.
+
+cleaned_data = []
+
+for entry in raw_data:
+    
+# For extracting wavelength.
+    
+    wavelength_match = re.search(r'(\d+)\s*nm', entry)
+
+# For extracting power and unit.
+    
+    power_match = re.search(r'(\d+\.?\d*)\s*(mW|W)', entry)
+
+    if wavelength_match and power_match:
+        wavelength_nm = int(wavelength_match.group(1))
+        power_value = float(power_match.group(1))
+        unit = power_match.group(2)
+
+# Converting units W to mW
+        if unit == "W":
+            power_value *= 1000
+
+        cleaned_data.append({
+            "wavelength_nm": wavelength_nm,
+            "power_mW": power_value
+        })
+
+# Printing cleaned data
+
+print("Cleaned Optics Data")
+print("Wavelength (nm)\tPower (mW)")
+for data in cleaned_data:
+    print(f"{data['wavelength_nm']}\t\t{data['power_mW']}")
