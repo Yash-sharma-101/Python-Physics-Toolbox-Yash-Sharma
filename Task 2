@@ -1,0 +1,53 @@
+# Creating a dictionary with materials from materials science with different parameters like densities, conductivities and young's modulus.
+materials = {
+    "Aluminum": {"density(in g/cm**3)": 2.7, "conductivity(in S/m)": 3.5*10**7, "young's modulus(in GPa)": 70},
+    "Copper": {"density(in g/cm**3)": 8.96, "conductivity(in S/m)": 5.9*10**7, "young's modulus(in GPa)": 110},
+    "Silicon": {"density(in g/cm**3)": 2.33, "conductivity(in S/m)": 1.5*10**-3, "young's modulus(in GPa)": 130},
+    "Graphene": {"density(in g/cm**3)": 2.2, "conductivity(in S/m)": 1*10**8, "young's modulus(in GPa)": 1000}
+}
+
+# Defining a function for adding a new material.
+
+def add_material(name, density, conductivity, modulus):
+    materials[name] = {
+        "density(in g/cm**3)": density,
+        "conductivity(in S/m)": conductivity,
+        "young's modulus(in GPa)": modulus
+    }
+    
+# For example let us take a new material silver and add that in dictionary.
+
+add_material("Silver", 10.49, 6.3*10**7, 83)
+
+# Printing updated material dictionary.
+
+print("Updated materials",materials)
+
+# Defining a function for getting highest conductivity material.
+
+def highest_conductivity():
+    material= max(materials, key=lambda m: materials[m]["conductivity(in S/m)"])
+    return material
+
+# Printing the name of highest conductive material.
+
+print("Material with highest conductivity:", highest_conductivity())
+
+# Defining a function for getting the conductivity value of highest conductive material.
+
+def value_of_highest_conductive_material():
+     material= max(materials, key=lambda m: materials[m]["conductivity(in S/m)"])
+     value= materials[material]["conductivity(in S/m)"]
+     return value
+ 
+# Printing the conductivity value of highest conductive material.
+
+print("Conductivity value of highest conductive material=",value_of_highest_conductive_material(),"S/m")
+ 
+# Defining a function for getting the density list.
+
+def density_list():
+    return [materials[m]["density(in g/cm**3)"] for m in materials]
+
+# Printing the density list.
+print("List of densities:", density_list())
