@@ -1,0 +1,78 @@
+# Importing the libraries.
+ 
+import numpy as np
+import matplotlib.pyplot as plt
+
+
+# Defining a function for temperature classification.
+
+def classify_plasma_temp(temp):
+    if temp < 1*10**4:
+        return "Cold plasma"
+    elif temp <= 1*10**6:
+        return "Warm plasma"
+    else:
+        return "Hot plasma"
+
+
+results = []
+temperatures = []
+count = 0
+
+# Fixing the input values at 5.
+
+while count < 5:
+    given_input = input(f"Enter temperature {count + 1} in Kelvin: ")
+
+# Defining a function for checking if input is a valid number i.e int or float.
+    
+    if given_input.replace('.', '', 1).isdigit():
+        t = float(given_input)
+        
+# Defining a function to ensure that temperature can't be negative in Kelvin.
+
+        if t < 0:
+            print("Temperature cannot be negative. Try again.")
+        else:
+            category = classify_plasma_temp(t)
+            results.append((t, category))
+            temperatures.append(t)
+            count += 1
+    else:
+        print("Invalid input. Please enter a numeric value.")
+        
+# Printing the outcomes.
+
+print("Plasma Temperature Classification")
+print("Temperature(K)\ Category")
+for t, c in results:
+    print(f"{t:.2e}\t{c}")
+
+print("Average temperature of plasma", np.mean(temperatures),"K")
+
+
+# Category mapping
+category_map = {
+    "Cold plasma": 1,
+    "Warm plasma": 2,
+    "Hot plasma": 3
+}
+
+cat_values = []
+temp_values = []
+
+i = 0
+while i < len(results):
+    cat_values.append(category_map[results[i][1]])
+    temp_values.append(results[i][0])
+    i += 1
+
+# Ploting the Category vs Temperature graph.
+plt.figure()
+plt.scatter(cat_values, temp_values)
+plt.xticks([1, 2, 3], ["Cold plasma", "Warm plasma", "Hot plasma"])
+plt.xlabel("Plasma Category")
+plt.ylabel("Temperature (K)")
+plt.title("Plasma Category vs Temperature")
+plt.grid(True)
+plt.show()
